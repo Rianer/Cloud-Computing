@@ -5,7 +5,7 @@ function findAll() {
   return new Promise((resolve, reject) => {
     const client = getClient();
     client.connect();
-    client.query("SELECT * FROM vehicles", (err, res) => {
+    client.query("SELECT * FROM stores", (err, res) => {
       if (!err) {
         console.log("Transaction successful!");
         resolve(res.rows);
@@ -19,11 +19,36 @@ function findAll() {
   });
 }
 
-function findVehicleById(id) {
+function insertStore(store) {
+  return new Promise((resolve, reject) => {
+    const newStore = { id: uuidv4(), ...store };
+    const client = getClient();
+    client.connect();
+    client.query(
+      "INSERT INTO stores(id, company, total_vehicles) VALUES ($1, $2, $3)",
+      [newStore.id, newStore.company, newStore.total_vehicles],
+      (err, res) => {
+        if (!err) {
+          resolve(newStore);
+          console.log("Transaction successful!");
+        } else if (err.code == 23505) {
+          resolve("Company name already exists!");
+        } else {
+          resolve(null);
+          console.log(`Error code: ${err.code}`);
+          console.log(err.stack);
+        }
+        client.end();
+      }
+    );
+  });
+}
+
+function findById(id) {
   return new Promise((resolve, reject) => {
     const client = getClient();
     client.connect();
-    client.query("SELECT * FROM vehicles WHERE id = $1", [id], (err, res) => {
+    client.query("SELECT * FROM stores WHERE id = $1", [id], (err, res) => {
       if (!err) {
         console.log("Transaction successful!");
         resolve(res.rows[0]);
@@ -40,17 +65,20 @@ function findVehicleById(id) {
   });
 }
 
-function findVehiclesByMaker(maker) {
+function findByCompany(company) {
   return new Promise((resolve, reject) => {
     const client = getClient();
     client.connect();
     client.query(
-      "SELECT * FROM vehicles WHERE maker = $1",
-      [maker],
+      "SELECT * FROM stores WHERE company = $1",
+      [company],
       (err, res) => {
         if (!err) {
           console.log("Transaction successful!");
-          resolve(res.rows);
+          resolve(res.rows[0]);
+        } else if (err.code == "22P02") {
+          console.log("Invalid UUID format");
+          resolve("invalid format");
         } else {
           console.log(`Error code: ${err.code}`);
           console.log(err.stack);
@@ -62,24 +90,17 @@ function findVehiclesByMaker(maker) {
   });
 }
 
-function updateVehicle(vehicle, id) {
+function updateStore(store, id) {
   return new Promise((resolve, reject) => {
     const client = getClient();
     client.connect();
     client.query(
-      "UPDATE vehicles SET maker = $1, type = $2, model = $3, year = $4, store_id = $5 WHERE id = $6",
-      [
-        vehicle.maker,
-        vehicle.type,
-        vehicle.model,
-        vehicle.year,
-        vehicle.store_id,
-        id,
-      ],
+      "UPDATE stores SET company = $1 WHERE id = $2",
+      [store.company, id],
       (err, res) => {
         if (!err) {
           console.log("Transaction successful!");
-          resolve(vehicle);
+          resolve(store);
         } else if (err.code === "23505") {
           console.log("Duplicated value!");
           resolve("duplicated value");
@@ -94,11 +115,11 @@ function updateVehicle(vehicle, id) {
   });
 }
 
-function deleteVehicle(id) {
+function deleteStore(id) {
   return new Promise((resolve, reject) => {
     const client = getClient();
     client.connect();
-    client.query("DELETE FROM vehicles WHERE id = $1", [id], (err, res) => {
+    client.query("DELETE FROM stores WHERE id = $1", [id], (err, res) => {
       if (!err) {
         console.log("Deleted successfully!");
         resolve("deleted");
@@ -112,53 +133,24 @@ function deleteVehicle(id) {
   });
 }
 
-function deleteVehiclesByMaker(maker) {
+function changeVehicleCount(store, id, amount) {
   return new Promise((resolve, reject) => {
     const client = getClient();
     client.connect();
     client.query(
-      "DELETE FROM vehicles WHERE maker = $1",
-      [maker],
+      "UPDATE stores SET total_vehicles = $1 WHERE id = $2",
+      [store.total_vehicles + amount, id],
       (err, res) => {
         if (!err) {
-          console.log("Deleted successfully!");
-          resolve("deleted");
-        } else {
-          console.log(`Error code: ${err.code}`);
-          console.log(err.stack);
-          resolve(null);
-        }
-        client.end();
-      }
-    );
-  });
-}
-
-function insertVehicle(vehicle) {
-  return new Promise((resolve, reject) => {
-    const newVehicle = { id: uuidv4(), ...vehicle };
-    const client = getClient();
-    client.connect();
-    client.query(
-      "INSERT INTO vehicles(id, type, maker, year, store_id, model) VALUES ($1, $2, $3, $4, $5, $6)",
-      [
-        newVehicle.id,
-        newVehicle.type,
-        newVehicle.maker,
-        newVehicle.year,
-        newVehicle.store_id,
-        newVehicle.model,
-      ],
-      (err, res) => {
-        if (!err) {
-          resolve(newVehicle);
           console.log("Transaction successful!");
-        } else if (err.code == 23505) {
-          resolve("invalid data");
+          resolve(store);
+        } else if (err.code === "23505") {
+          console.log("Duplicated value!");
+          resolve("duplicated value");
         } else {
-          resolve(null);
           console.log(`Error code: ${err.code}`);
           console.log(err.stack);
+          resolve(null);
         }
         client.end();
       }
@@ -168,10 +160,10 @@ function insertVehicle(vehicle) {
 
 module.exports = {
   findAll,
-  findVehicleById,
-  findVehiclesByMaker,
-  updateVehicle,
-  deleteVehicle,
-  insertVehicle,
-  deleteVehiclesByMaker,
+  insertStore,
+  findById,
+  updateStore,
+  deleteStore,
+  changeVehicleCount,
+  findByCompany,
 };

@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "6e843c2f-2143-4f23-b926-abf15e1805fd",
+		"name": "Cloud Computing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Default Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/welcome",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"welcome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Vehicles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/vehicles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vehicle by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/vehicles?id=ae506e63-f902-47a6-9483-7a06adb66238",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "ae506e63-f902-47a6-9483-7a06adb66238"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vehicles by Maker",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/vehicles?maker=BMW",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles"
+					],
+					"query": [
+						{
+							"key": "maker",
+							"value": "BMW"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Vehicle Info by ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"year\": 2013,\r\n    \"type\": \"Estate\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/vehicles?id=ae506e63-f902-47a6-9483-7a06adb66238",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "ae506e63-f902-47a6-9483-7a06adb66238"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Vehicle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"maker\" : \"VW\",\r\n    \"model\" : \"Golf\",\r\n    \"type\" : \"Hatch-Back\",\r\n    \"year\" : 2016,\r\n    \"store_id\" : \"58b8f49c-a464-4933-a1a4-dfe8f317e587\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/vehicles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Vehicle By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/vehicles?id=132a3abd-22be-46fc-a783-acd1e768f0cd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "132a3abd-22be-46fc-a783-acd1e768f0cd"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All Vehicles of Maker",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/vehicles?maker=VW",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles"
+					],
+					"query": [
+						{
+							"key": "maker",
+							"value": "VW"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Stores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/stores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"stores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\" : \"New Store\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/stores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"stores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/stores?id=9985853f-76e4-4b82-8923-27c21793580b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"stores"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "9985853f-76e4-4b82-8923-27c21793580b"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Store by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/stores?id=58b8f49c-a464-4933-a1a4-dfe8f317e587",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"stores"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "58b8f49c-a464-4933-a1a4-dfe8f317e587"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Store by ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\" : \"GoCars\",\r\n    \"total_vehicles\" : 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/stores?id=9985853f-76e4-4b82-8923-27c21793580b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"stores"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "9985853f-76e4-4b82-8923-27c21793580b"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store by Company",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/stores?company=NewStore",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"stores"
+					],
+					"query": [
+						{
+							"key": "company",
+							"value": "NewStore"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Store by Company",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\" : \"Good Cars\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/stores?company=NewStore",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"stores"
+					],
+					"query": [
+						{
+							"key": "company",
+							"value": "NewStore"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Store by Company",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/stores?company=Good",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"stores"
+					],
+					"query": [
+						{
+							"key": "company",
+							"value": "Good"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
