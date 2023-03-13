@@ -65,14 +65,12 @@ async function createVehicle(req, res) {
       model: model,
     };
 
-    // TODO: Check for availability of the store ID
-    // console.log(vehicle);
     const newVehicle = await VehiclesModel.insertVehicle(vehicle);
 
     if (newVehicle === null) {
       res.writeHead(500, DEFAULT_HEADERS);
       return res.end(
-        JSON.stringify({ message: "Something went wrong: User not added" })
+        JSON.stringify({ message: "Something went wrong: Vehicle not added" })
       );
     }
     const store = await StoresModel.findById(vehicle.store_id);

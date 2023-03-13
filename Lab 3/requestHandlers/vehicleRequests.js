@@ -8,6 +8,7 @@ const {
   deleteVehicleById,
   deleteVehiclesByMaker,
 } = require("../controllers/vehiclesController");
+const { DEFAULT_HEADERS } = require("../resources/constants");
 
 function processVehicleIdRequest(req, res) {
   const id = getHttpQuerryParameter(req);
