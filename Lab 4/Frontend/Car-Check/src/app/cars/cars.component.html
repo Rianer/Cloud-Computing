@@ -1,4 +1,73 @@
 <div class="h-section">
-  <button class="getter">Get Cars</button>
-  <div></div>
+  <div class="display">
+    <div class="row selectors">
+      <button (click)="toggleShowingCarList()">
+        {{ showingCarList ? "Clear List" : "Show Cars" }}
+      </button>
+      <button *ngIf="showingCarList" (click)="toggleOverlay()">Add Car</button>
+    </div>
+    <div *ngIf="!showingCarList" class="row centered">
+      <h2 class="background-text">Nothing to show, yet</h2>
+    </div>
+    <div *ngIf="showingCarList" class="row centered">
+      <table class="vehicles-info">
+        <tr>
+          <th>Info</th>
+          <th>Make</th>
+          <th>Model</th>
+          <th>Type</th>
+          <th>Year</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let vehicle of vehicles">
+          <td class="more-info" (click)="findModels(vehicle.maker)">
+            <i class="fas fa-info-circle"></i>
+          </td>
+          <td class="text">{{ vehicle.maker }}</td>
+          <td class="text">{{ vehicle.model }}</td>
+          <td class="text">{{ vehicle.type }}</td>
+          <td class="text">{{ vehicle.year }}</td>
+          <td class="delete" (click)="deleteCar(vehicle.id)">
+            <i class="fas fa-trash"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div *ngIf="showingModels" class="row">
+      <div *ngIf="otherModels.length != 0" class="section-title">
+        Other Models:
+        <ul>
+          <li *ngFor="let model of otherModels">{{ model }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showingNewCarDialog" class="overlay-right">
+  <div class="form-container">
+    <h2>New Car</h2>
+    <form [formGroup]="newCar">
+      <div class="txt-field">
+        <label>Make</label>
+        <input formControlName="make" type="text" />
+      </div>
+      <div class="txt-field">
+        <label>Model</label>
+        <input formControlName="model" type="text" />
+      </div>
+      <div class="txt-field">
+        <label>Year</label>
+        <input formControlName="year" type="number" />
+      </div>
+      <div class="txt-field">
+        <label>Type</label>
+        <input formControlName="type" type="text" />
+      </div>
+      <div class="button-row">
+        <button class="create" (click)="createCar()">Create</button>
+        <button class="close" (click)="toggleOverlay()">Close</button>
+      </div>
+    </form>
+  </div>
 </div>

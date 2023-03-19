@@ -1,0 +1,182 @@
+@import '../../utilities/constants.scss';
+
+.display {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.2rem 0;
+    padding: 0.2rem 0;
+
+    .section-title {
+      margin-left: 2rem;
+      color: $mainColor;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ul {
+      margin: 0;
+      min-width: 100%;
+      border-top: 2px solid $secondaryColor;
+      padding: 0.2rem 0.5rem;
+    }
+
+    li {
+      list-style-type: none;
+      text-transform: capitalize;
+      letter-spacing: 0.05rem;
+      color: $mainColor;
+      transition: 150ms ease;
+    }
+
+    li:hover {
+      padding-left: 3px;
+    }
+  }
+
+  .selectors {
+    justify-content: start;
+    border-bottom: 1px solid $mainColor;
+    padding: 0;
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: $mainColor;
+      color: $whiteColor;
+      cursor: pointer;
+      clip-path: circle(88.2% at 61% 99%);
+      transition: 250ms ease;
+    }
+
+    button:hover {
+      background-color: $secondaryColor;
+    }
+  }
+
+  .centered {
+    justify-content: center;
+  }
+
+  .background-text {
+    color: $muteColor;
+  }
+
+  table {
+    min-width: 80%;
+
+    th {
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 1.3rem;
+      color: $secondaryColor;
+    }
+
+    td {
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 0.5rem 0;
+      transition: 150ms ease;
+    }
+
+    .delete {
+      padding-left: 2rem;
+      cursor: pointer;
+      transition: 150ms ease;
+
+    }
+
+    .more-info {
+      cursor: pointer;
+      transition: 150ms ease;
+
+    }
+
+    .delete:hover {
+      color: $secondaryColor;
+    }
+
+    .more-info:hover {
+      color: $lightColor;
+    }
+
+    tr:hover {
+      .text {
+        color: $accentColor;
+      }
+    }
+  }
+}
+
+.overlay-right {
+  z-index: 120;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+}
+
+.form-container {
+  color: white;
+  letter-spacing: 0.1rem;
+  height: 100%;
+  background-color: $lightColor;
+  padding: 2rem;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .txt-field {
+    padding: 0.6rem 0.2rem;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 8px;
+    }
+  }
+
+  .button-row {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    button {
+      border: none;
+      color: $mainColor;
+      background-color: white;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: 150ms ease;
+    }
+
+    .create:hover {
+      color: white;
+      background-color: $accentColor;
+    }
+
+    .close:hover {
+      color: white;
+      background-color: $secondaryColor;
+    }
+  }
+}

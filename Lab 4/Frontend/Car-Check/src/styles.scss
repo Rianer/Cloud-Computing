@@ -7,17 +7,22 @@ html {
   padding: 0;
 }
 
-:root{
+:root {
   font-family: 'Lato', sans-serif;
   font-size: 16px;
 }
-html, body { height: 100%; }
+
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: 'Rubik', sans-serif;
 }
 
-.main-content-container{
+.main-content-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -25,14 +30,14 @@ body {
   flex-direction: column;
   padding: 2rem 0;
 
-  .components{
+  .components {
     width: 100%;
     display: flex;
     justify-content: center;
   }
 }
 
-.h-section{
+.h-section {
   width: 80%;
   background-color: $whiteBackgroundColor;
   border-bottom: 1px solid rgb(22, 33, 44);
@@ -43,32 +48,20 @@ body {
   justify-content: flex-start;
 }
 
-.info{
+.info {
   display: flex;
   flex-direction: row;
-  .label{
+
+  .label {
     color: $secondaryColor;
   }
-  .value{
+
+  .value {
     color: $mainColor;
     margin-left: 0.3rem;
   }
 }
 
-.info:last-child{
+.info:last-child {
   margin-left: auto;
 }
-
-button.getter{
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: $mainColor;
-  color: $whiteColor;
-  cursor: pointer;
-  transition: 250ms ease;
-}
-
-button.getter:hover{
-  background-color: $secondaryColor;
-}
-

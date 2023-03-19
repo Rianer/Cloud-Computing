@@ -12,11 +12,3 @@ export class DBCar {
     return Object.assign(new DBCar(), json);
   }
 }
-
-export class Car {
-  constructor(maker, year, model) {
-    this.make = maker;
-    this.year = year;
-    this.model = model;
-  }
-}
