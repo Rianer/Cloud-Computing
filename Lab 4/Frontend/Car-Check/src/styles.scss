@@ -1,0 +1,74 @@
+@import 'utilities/constants.scss';
+
+html {
+  height: 100%;
+  margin: 0;
+  top: 0;
+  padding: 0;
+}
+
+:root{
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+}
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+}
+
+.main-content-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 0;
+
+  .components{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.h-section{
+  width: 80%;
+  background-color: $whiteBackgroundColor;
+  border-bottom: 1px solid rgb(22, 33, 44);
+  box-shadow: 3px 3px 2px rgb(29, 44, 58);
+  padding: 1rem 3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.info{
+  display: flex;
+  flex-direction: row;
+  .label{
+    color: $secondaryColor;
+  }
+  .value{
+    color: $mainColor;
+    margin-left: 0.3rem;
+  }
+}
+
+.info:last-child{
+  margin-left: auto;
+}
+
+button.getter{
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: $mainColor;
+  color: $whiteColor;
+  cursor: pointer;
+  transition: 250ms ease;
+}
+
+button.getter:hover{
+  background-color: $secondaryColor;
+}
+
